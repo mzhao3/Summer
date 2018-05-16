@@ -87,8 +87,26 @@ public class ALHeap
    * Postcondition: Tree maintains heap property.
    *****************************************************/
   public Integer removeMin()
-  { 
-  }//O(?)
+  {
+      if (isEmpty()){
+	  return null;
+      }
+      int currPos = 0;
+      while (currPos < _heap.size()) {
+	  //get smaller child
+	  int min = minChildPos(currPos);
+
+	  //is leaf
+	  if (min == -1){
+	      break;
+	  }
+	  
+	  swap(currPos, min);
+	  currPos = min;
+      }
+      
+      return _heap.remove(currPos);
+  }//O(logn)
 
 
   /*****************************************************
@@ -98,8 +116,17 @@ public class ALHeap
    * Postcondition: Tree unchanged
    *****************************************************/
   private int minChildPos( int pos )
-  { 
-  }//O(?)
+  {
+      if (pos > _heap.size() - 1){
+	  return -1; // not found
+      }
+      if (_heap.get(pos*2+1) < _heap.get(pos*2+2)){
+	  return pos*2+1; //left child
+      }
+      else {
+	  return pos*2+2; //right child
+      }
+  }//O(1)
   
 
   //************ aux helper fxns ***************
