@@ -35,7 +35,7 @@ public class ALHeap
 	  retStr += _heap.get(i) + " ";
       }
       return retStr;
-  }//O(?)
+  }//O(n)
 
 
   /*****************************************************
@@ -45,7 +45,7 @@ public class ALHeap
   public boolean isEmpty()
   {
       return _heap.size() == 0;
-  }//O(?)
+  }//O(1)
 
 
   /*****************************************************
@@ -56,13 +56,17 @@ public class ALHeap
   public Integer peekMin()
   {
       return _heap.get(1);
-  }//O(?)
+  }//O(1)
 
 
   /*****************************************************
    * add(Integer) 
    * Inserts an element in the heap
    * Postcondition: Tree exhibits heap property.
+   * Algorithm: 
+     1) add value to end of list
+     2) if parent value > this value, swap
+     3) repeat swaps until less than parent
    *****************************************************/
   public void add( Integer addVal )
   {
@@ -74,7 +78,7 @@ public class ALHeap
 	  currIndex = parentIndex;
 	  parentIndex = parentIndex/2
       }
-  }//O(?)
+  }//O(logn)
 
 
   /*****************************************************
