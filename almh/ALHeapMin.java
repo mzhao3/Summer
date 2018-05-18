@@ -52,7 +52,7 @@ public class ALHeapMin
    *****************************************************/
   public Integer peekMin()
   {
-      return _heap.get(1);
+      return _heap.get(0);
   }//O(1)
 
   public int getSize() {

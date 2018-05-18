@@ -54,10 +54,14 @@ public class ALHeapMax
    * Returns max value in heap
    * Postcondition: Heap remains unchanged.
    *****************************************************/
-  public Integer peekMax()
-  {
-      return _heap.get(1);
-  }//O(1)
+    public Integer peekMax()
+    {
+	if (_heap.size() != 0)
+	    return _heap.get(0);
+	else
+	    return null;
+    }
+    //O(1)
 
 
   /*****************************************************
@@ -69,28 +73,28 @@ public class ALHeapMax
      2) if parent value > this value, swap
      3) repeat swaps until less than parent
    *****************************************************/
-  public void add( Integer addVal )
-  {
+public void add( Integer addVal )
+{
 
-  //Add value as last node, to maintain balance, completeness of tree
-  _heap.add( addVal );
+    //Add value as last node, to maintain balance, completeness of tree
+    _heap.add( addVal );
 
-  int addValPos = _heap.size() - 1;
-  int parentPos;
+    int addValPos = _heap.size() - 1;
+    int parentPos;
 
-  while( addValPos > 0 ) { //potentially swap until reach root
+    while( addValPos > 0 ) { //potentially swap until reach root
 
-      //pinpoint parent
-      parentPos = (addValPos-1) / 2;
+	//pinpoint parent
+	parentPos = (addValPos-1) / 2;
 
-      if ( addVal.compareTo(_heap.get(parentPos)) < 0 ) {//addVal < parent
-    swap( addValPos, parentPos );
-    addValPos = parentPos;
-      }
-      else
-    break;
-  }
-    } //O(logn)
+	if ( addVal.compareTo(_heap.get(parentPos)) < 0 ) {//addVal < parent
+	    swap( addValPos, parentPos );
+	    addValPos = parentPos;
+	}
+	else
+	    break;
+    }
+} //O(logn)
 
   /*****************************************************
    * removeMax()  ---  means of removing an element from heap
